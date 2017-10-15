@@ -1,44 +1,18 @@
 package pokerHands;
 import java.util.ArrayList;
 import java.util.Collections;
+/**
+ * 
+ * @author Sean Mitchem
+ *
+ */
 public class PokerHandComparer {
 
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		/*Test cases
-		 *9 vs 8
-		 *8 vs 7
-		 * 7 vs 6
-		 * 6 vs 5
-		 * 5 vs 4
-		 * 4 vs 3
-		 * 3 vs 2
-		 * 2 vs 1
-		 * 
-		 * 9 vs 9 tie
-		 * 8 vs 8 tie
-		 * 7 vs 7 tie
-		 * 6 vs 6 tie
-		 * 5 vs 5 tie
-		 * 4 vs 4 tie
-		 * 3 vs 3 tie
-		 * 2 vs 2 tie
-		 * 1 vs 1 tie
-		 * 
-		 * 9 vs 9 one wins
-		 * 8 vs 8 one wins
-		 * 7 vs 7 one wins
-		 * 6 vs 6 one wins
-		 * 5 vs 5 one wins
-		 * 4 vs 4 one wins
-		 * 3 vs 3 one wins
-		 * 2 vs 2 one wins
-		 * 1 vs 1 one wins
-		 * 
-		 * Ace-Through-Five vs Two-Through-Six Straight Flushes
-		 * Ace-Through-Five vs Two-Through-Six Straights
-		 **/
-		
-		
 		//"2H 3H 4H 5H 6H" Straight Flush: 9
 		//"2H 2D 2C 2S 5H" 4 of a Kind: 8 
 		//"2C 2H 2D 5H 5D" Full House: 7
@@ -56,6 +30,14 @@ public class PokerHandComparer {
 		System.out.println(generateResults(winner, blackHand, whiteHand));
 	}
 	
+	/**
+	 * 
+	 * @param winner
+	 * @param black
+	 * @param white
+	 * @return a string detailing who won, the category of their hand (e.g. a flush),
+	 * and the strongest card in their hand
+	 */
 	public static String generateResults(String winner, PokerHand black, PokerHand white) {
 		String winningHand="";
 		String winningCards="";
@@ -98,6 +80,12 @@ public class PokerHandComparer {
 		return(winner+" wins. - with "+winningHand+winningCards);
 	}
 	
+	/**
+	 * 
+	 * @param Black
+	 * @param White
+	 * @return a String containing the outcome of the comparison: either "Black", "White", or "Tie"
+	 */
 	public static String compareHands(PokerHand Black, PokerHand White) {
 		String winner= "Tie"; 
 		if (Black.getScore()>White.getScore()) {

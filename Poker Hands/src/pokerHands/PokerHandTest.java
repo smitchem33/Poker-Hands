@@ -44,6 +44,7 @@ public class PokerHandTest {
 		expectedVal.add(4);
 		expectedVal.add(5);
 		expectedVal.add(6);
+		
 		//Act
 		ArrayList<Integer> result = testHand.getSortedCardNumbers();
 		
@@ -71,6 +72,7 @@ public class PokerHandTest {
 		expectedVal.add(4);
 		expectedVal.add(5);
 		expectedVal.add(14);
+		
 		//Act
 		ArrayList<Integer> result = PokerHand.getAceThroughFive();
 		
@@ -87,8 +89,10 @@ public class PokerHandTest {
 		expectedVal.put(4, 1);
 		expectedVal.put(5, 1);
 		expectedVal.put(6, 1);
+		
 		//Act
 		HashMap<Integer,Integer> result = testHand.getCardOccurenceHash();
+		
 		//Assert
 		assertEquals(expectedVal, result);
 	}
@@ -97,8 +101,10 @@ public class PokerHandTest {
 	public void getKeyCardsTest() {
 		//Arrange
 		String expectedVal="6 high";
+		
 		//Act
 		String result = testHand.getKeyCards();
+		
 		//Assert
 		assertEquals(expectedVal, result);
 	}

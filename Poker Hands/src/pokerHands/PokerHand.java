@@ -16,8 +16,6 @@ public class PokerHand {
 	//Fields
 	private ArrayList<String> cards;
 	private int handScore;
-	
-	//suits and numbers/face-values are considered separately
 	private ArrayList<Integer> cardNumbers ;
 	private ArrayList<Integer> sortedCardNumbers;
 	private ArrayList<Character> cardSuits;
@@ -38,6 +36,10 @@ public class PokerHand {
 	
 	//Methods
 	//Constructor
+	/**
+	 * 
+	 * @param cardsInfo
+	 */
 	public PokerHand(String cardsInfo){
 		//Directly sets the simple field values, calls evaulateHand to set the more complex fields
 		handScore = -1;
@@ -55,8 +57,11 @@ public class PokerHand {
 		keyCards = generateKeyCards(handScore, sortedCardNumbers,cardNumberOccuranceHash);		
 	}
 	
-	//Card data format for a three of clubs: 3C  
-	
+	/**
+	 * 
+	 * @param cardsInfo
+	 * @return an ArrayList<Integer> holding the number values of each card in the hand
+	 */
 	private ArrayList<Integer> generateCardNumbers (String cardsInfo){
 		ArrayList<Integer> cardNumbersToReturn = new ArrayList<Integer>();
 		for (int i = 0; i < cardsInfo.length(); i = i + 3) {
@@ -84,7 +89,11 @@ public class PokerHand {
 		return cardNumbersToReturn;
 	}
 	
-	
+	/**
+	 * 
+	 * @param cardsInfo
+	 * @return an ArrayList<Character> holding the suits of each card in hand
+	 */
 	private ArrayList<Character> generateCardSuits (String cardsInfo){
 		ArrayList<Character> cardSuitsToReturn = new ArrayList<Character>();
 		for (int i = 1; i < cardsInfo.length(); i = i + 3) {
@@ -93,7 +102,12 @@ public class PokerHand {
 		return cardSuitsToReturn;
 	}
 	
-	
+	/**
+	 * 
+	 * @param sortedCardNumbersGiven
+	 * @return a HashMap<Integer, Integer> showing the number of cards of each value that are in hand
+	 * (e.g. 3 ones, a two, and a jack)
+	 */
 	private HashMap<Integer, Integer> generateOccuranceHash(ArrayList<Integer> sortedCardNumbersGiven){
 		HashMap<Integer,Integer> cardNumberOccuranceHashToReturn = new HashMap<Integer,Integer>();
 		for (int i=0; i<HAND_SIZE;i++) {
@@ -110,7 +124,14 @@ public class PokerHand {
 		return cardNumberOccuranceHashToReturn;
 	}
 
-	
+	/**
+	 * 
+	 * @param cardSuitsGiven
+	 * @param sortedCardNumbersGiven
+	 * @param cardNumberOccuranceHashGiven
+	 * @return an integer from 1-9 representing one of the nine possible categories of hand in poker.
+	 * Higher numbers denote stronger hands.
+	 */
 	//implementation that generates the score for the hand
 	private int generateHandScore(ArrayList<Character> cardSuitsGiven, ArrayList<Integer> sortedCardNumbersGiven, HashMap<Integer,Integer>cardNumberOccuranceHashGiven) {
 		//set score for hand
@@ -182,7 +203,13 @@ public class PokerHand {
 		return handScoreToReturn;
 	}
 	
-	
+	/**
+	 * 
+	 * @param handScoreGiven
+	 * @param sortedCardNumbersGiven
+	 * @param cardNumberOccuranceHashGiven
+	 * @return a String detailing the key high cards in a hand--used for breaking up ties between hands of the same category
+	 */
 	//Returns a string with details regarding the important cards to a hand
 	private String generateKeyCards(int handScoreGiven, ArrayList<Integer> sortedCardNumbersGiven, HashMap<Integer,Integer> cardNumberOccuranceHashGiven) {	
 		String keyCardsToReturn="";
@@ -251,24 +278,59 @@ public class PokerHand {
 }
 	
 	//getters
+	/**
+	 * 
+	 * @return an ArrayList of Strings, with each String showing the suit and value of a card in hand
+	 */
 	public ArrayList<String> getCards() {
 		return cards;
 	}
+	
+	/**
+	 * 
+	 * @return an integer from 1-9
+	 */
 	public int getScore(){
 		return handScore;
 	}
+	
+	/**
+	 * 
+	 * @return an ArrayList of Integers--representing the number values of cards in hand--sorted in ascending order 
+	 */
 	public ArrayList<Integer> getSortedCardNumbers(){
 		return sortedCardNumbers;
 	}
+	
+	/**
+	 * 
+	 * @return an integer dictating how many cards can be in a hand at once
+	 */
 	static public int getHandSize() {
 		return HAND_SIZE;
 	}
+	
+	/**
+	 * 
+	 * @return an ArrayList of Integers representing the values present in a Straight or Straight Flush from
+	 * ace through five
+	 */
 	static public ArrayList<Integer> getAceThroughFive() {
 		return ACE_THROUGH_FIVE;
 	}
+	
+	/**
+	 * 
+	 * @return a Hashmap<Integer, Integer> detailing how many cards of each number value are in hand
+	 */
 	public HashMap<Integer,Integer> getCardOccurenceHash() {
 		return cardNumberOccuranceHash;
 	}
+	
+	/**
+	 * 
+	 * @return a String of the key cards--the high cards used for breaking ties
+	 */
 	public String getKeyCards() {
 		return keyCards;
 	}
